@@ -51,16 +51,7 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory>web/css</directory>
-                        </resource>
-                        <resource>
-                            <directory>web/jsp</directory>
-                        </resource>
-                        <resource>
-                            <directory>web/js</directory>
-                        </resource>
-                        <resource>
-                            <directory>web/images</directory>
+                            <directory>web</directory>
                         </resource>
                     </webResources>
                 </configuration>
