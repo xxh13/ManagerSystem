@@ -49,6 +49,7 @@
                 <version>3.3</version>
                 <configuration>
                          <warName>ManageSystem</warName>
+                         <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
         </plugins>
