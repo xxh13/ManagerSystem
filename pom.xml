@@ -34,7 +34,7 @@
     </dependencies>
 
     <build>
-        <finalName>ManageSystem</finalName>
+        <finalName>ManageSystem.war</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
