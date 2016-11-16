@@ -11,7 +11,7 @@ node {
     stage('deploy') {
         sh "docker stop my || true"
         sh "docker rm my || true"
-        sh "docker run --name my -p 11111:8080 -d tomcat"
+        sh "docker run --name my -p 11111:8080 -d bd247d3e84aa"
         sh "docker cp target/ManageSystem.war my:/usr/local/tomcat/webapps"
     }
     stage('results') {
