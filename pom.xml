@@ -49,24 +49,23 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <warName>ManageSystem</warName>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>web/css</directory>
+                        </resource>
+                        <resource>
+                            <directory>web/jsp</directory>
+                        </resource>
+                        <resource>
+                            <directory>web/js</directory>
+                        </resource>
+                        <resource>
+                            <directory>web/images</directory>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>css</directory>
-            </resource>
-            <resource>
-                <directory>jsp</directory>
-            </resource>
-            <resource>
-                <directory>js</directory>
-            </resource>
-            <resource>
-                <directory>images</directory>
-            </resource>
-    </resources>
+        
     </build>
 </project>
