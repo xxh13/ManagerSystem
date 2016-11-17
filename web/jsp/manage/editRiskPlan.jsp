@@ -91,8 +91,8 @@
                                             <td>${item.effect}</td>
                                             <td>${item.threshold}</td>
                                             <td>${item.poster}</td>
-                                            <td>${item.tracer}</td>
-                                            <td>${item.conditiondescription}</td>
+                                            <%--<td>${item.tracer}</td>--%>
+                                            <td>${item.condition}</td>
                                             <td>${item.description}</td>
                                             <td>
                                                 <a href="/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
