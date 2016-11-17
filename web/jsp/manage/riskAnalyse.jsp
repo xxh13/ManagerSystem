@@ -73,13 +73,13 @@
                                     <div style="padding-top: 5px;font-weight: bolder;font-size: medium;margin-left: 20px;margin-right: 5px">开始于</div>
                                 </li>
                                 <li role="presentation" class="dropdown">
-                                   <input type="date" class="form-control" value="2016-11-15" />
+                                   <input type="date" class="form-control" value="2016-11-15" id="startdate"/>
                                 </li>
                                 <li role="presentation" class="dropdown">
                                     <div style="padding-top: 5px;font-weight: bolder;font-size: medium;margin-left: 20px;margin-right: 5px">结束于</div>
                                 </li>
                                 <li role="presentation" class="dropdown">
-                                    <input type="date" class="form-control" value="2016-11-16" />
+                                    <input type="date" class="form-control" value="2016-11-16" id="enddate"/>
                                 </li>
                             </ul> <!-- /pills -->
                         </div>
@@ -120,10 +120,190 @@
 <script>
 
     function lookup(){
+        alert('hh');
         var startdate=document.getElementById("startdate").value;
         var enddate=document.getElementById("enddate").value;
+
+
         alert(startdate+"|"+enddate);
-        location.href="/dangerLookUp?startdate="+startdate+"&enddate="+enddate;
+
+        $.post(
+                "/danger/analyseDangerByTime",
+                {
+                    "date1":startdate,
+                    "date2":enddate
+                },
+                function (data) {
+                    var set=$.parseJSON(data);
+                    var data1=set.data1;
+                    var data2=set.data2;
+                    var data3=set.data3;
+
+                    alert("data1="+data1);
+                    alert("data2="+data2);
+                    alert("data3="+data3);
+                    //直方图
+                    var histogramChart = echarts.init(document.getElementById('histogramChart'));
+                    histogramChart.setOption({
+                        title : {
+                            text: '风险识别次数与演变成问题数'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['识别次数','演变成问题数']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : data1
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'识别次数',
+                                type:'bar',
+                                data:data2,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最多'},
+                                        {type : 'min', name: '最少'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                }
+                            },
+                            {
+                                name:'演变成问题数',
+                                type:'bar',
+                                data:data3,
+                                markPoint : {
+                                    data : [
+                                        {name : '最多', value : 182.2, xAxis: 7, yAxis: 183},
+                                        {name : '最少', value : 2.3, xAxis: 11, yAxis: 3}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name : '平均值'}
+                                    ]
+                                }
+                            }
+                        ]
+                    });
+
+
+                    var data4=[];
+                    for(i=0;i<data1.length;i++){
+                        var unit = {};
+                        unit["name"] = data1[i];
+                        unit["value"] = data2[i];
+                        data4.push(unit);
+                    }
+                    //饼图
+                    var piechart1=echarts.init(document.getElementById('pieChart1'));
+                    piechart1.setOption(
+                            {
+                                title : {
+                                    text: '识别的风险来源占比',
+                                    x:'center'
+                                },
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    data: data1
+                                },
+                                series : [
+                                    {
+                                        name: '风险来源',
+                                        type: 'pie',
+                                        radius : '55%',
+                                        center: ['50%', '60%'],
+                                        data:data4,
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                    );
+
+
+                    var data5=[];
+                    for(i=0;i<data1.length;i++){
+                        var unit = {};
+                        unit["name"] = data1[i];
+                        unit["value"] = data3[i];
+                        data5.push(unit);
+                    }
+                    //饼图
+                    var piechart2=echarts.init(document.getElementById('pieChart2'));
+                    piechart2.setOption(
+                            {
+                                title : {
+                                    text: '演变成问题数的风险来源占比',
+                                    x:'center'
+                                },
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    data: ['风险1','风险2','风险3','风险4','风险5']
+                                },
+                                series : [
+                                    {
+                                        name: '风险来源',
+                                        type: 'pie',
+                                        radius : '55%',
+                                        center: ['50%', '60%'],
+                                        data:data5,
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                    );
+
+
+
+                }
+        );
+//        location.href="/danger/analyseDangerByTime?date1="+startdate+"&date2="+enddate;
     }
 
     //直方图

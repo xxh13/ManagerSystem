@@ -87,13 +87,16 @@ public class DangerServiceImpl implements DangerService{
     public List<Danger> getDangersByTime(Date d1, Date d2) {
         java.sql.Date sd1=new java.sql.Date(d1.getTime());
         java.sql.Date sd2=new java.sql.Date(d2.getTime());
-        String sql = "select * from danger where time>=? and time<=?";
+        String sql = "select * from danger where time BETWEEN ? and ?";
+        //String sql = "select * from danger";
         PreparedStatement pstmt;
         try {
             pstmt = (PreparedStatement) connection.prepareStatement(sql);
             pstmt.setDate(1,sd1);
             pstmt.setDate(2,sd2);
             ResultSet rs=pstmt.executeQuery();
+            /*Statement statement=connection.createStatement();
+            ResultSet rs=statement.executeQuery(sql);*/
             List<Danger> list=new ArrayList<Danger>();
             while(rs.next()){
                 Danger danger=new Danger();
@@ -101,7 +104,7 @@ public class DangerServiceImpl implements DangerService{
                 danger.setRid(rs.getInt("rid"));
                 danger.setThreshold(rs.getString("threshold"));
                 danger.setPoster(rs.getString("poster"));
-                danger.setPossibility(rs.getString("possibility"));
+                danger.setPossibility(rs.getString("possiblity"));
                 danger.setCondition(rs.getString("cond"));
                 danger.setDescription(rs.getString("description"));
                 danger.setEffect(rs.getString("effect"));
@@ -111,7 +114,7 @@ public class DangerServiceImpl implements DangerService{
             }
             return list;
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
         return new ArrayList<Danger>();

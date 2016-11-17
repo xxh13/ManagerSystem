@@ -110,12 +110,11 @@
                                     <c:forEach items="${dangerList}" var="item" varStatus="i">
                                         <tr>
                                             <td style="width: 35%">${item.content}</td>
-                                            <td>${item.possiblity}</td>
+                                            <td>${item.possibility}</td>
                                             <td>${item.effect}</td>
                                             <td>${item.threshold}</td>
                                             <td>${item.poster}</td>
-                                            <td>${item.tracer}</td>
-                                            <td>${item.conditiondescription}</td>
+                                            <td>${item.condition}</td>
                                             <td>${item.description}</td>
                                             <td>
                                                 <div  style="text-align: center">
@@ -215,7 +214,7 @@
         var startdate=document.getElementById("startdate").value;
         var enddate=document.getElementById("enddate").value;
         alert(startdate+"|"+enddate);
-        location.href="/getDangerByTime?startdate="+startdate+"&enddate="+enddate;
+        location.href="/danger/getDangerByTime?date1="+startdate+"&date2="+enddate;
     }
 
 </script>

@@ -42,8 +42,10 @@ public class ControllServlet extends HttpServlet {
         }
         else if(view.equals("riskAnalyse")){
             RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/riskAnalyse.jsp");
-            //Danger danger=ds.getDangerByDid(Integer.parseInt(request.getParameter("did")));
-            //request.setAttribute("danger",danger);
+            dispatcher.forward(request,response);
+        }
+        else if(view.equals("dangerLookUp")){
+            RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/dangerLookUp.jsp");
             dispatcher.forward(request,response);
         }
 
