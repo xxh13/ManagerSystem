@@ -1,11 +1,12 @@
 package managesystem.util;
 
+import managesystem.model.Danger;
 import managesystem.model.RiskPlan;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,21 +26,35 @@ public class RiskPlanUtil {
         String sql = "insert into riskplan(name, time) values (?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, riskPLan.getName());
-        ps.setDate(2, new java.sql.Date(riskPLan.getDate().getTime()));
+        ps.setDate(2, new java.sql.Date(riskPLan.getTime().getTime()));
         ps.executeUpdate();
         ps.close();
     }
 
-    public RiskPlan findRiskPlan(String rid) throws Exception {
-        String sql = "select * from riskplan where rid = " + rid;
+    public List<Danger> findDangerListByRid(String id) throws Exception {
+        List<Danger> list = new LinkedList<>();
+        String sql = "select * from danger where rid = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
-        rs.next();
-        RiskPlan riskPlan = new RiskPlan(rs.getInt("rid"), rs.getString("name"), rs.getDate("time"));
+        while(rs.next()) {
+            int did = rs.getInt("did");
+            String content = rs.getString("content");
+            String possiblity = rs.getString("possiblity");
+            String effect = rs.getString("effect");
+            String threshold = rs.getString("threshold");
+            String poster = rs.getString("poster");
+            String condition = rs.getString("cond");
+            String description = rs.getString("description");
+            String time = rs.getString("time");
+            int rid = rs.getInt("rid");
+            list.add(new Danger(did,content,possiblity, effect,threshold,poster,condition,description, time,rid));
+        }
+
 
         ps.close();
 
-        return riskPlan;
+        return list;
     }
 
     public List<RiskPlan> riskPlanAll() throws Exception {

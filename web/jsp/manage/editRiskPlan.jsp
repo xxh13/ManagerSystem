@@ -87,7 +87,7 @@
                                     <c:forEach items="${dangerList}" var="item" varStatus="i">
                                         <tr>
                                             <td style="width: 35%">${item.content}</td>
-                                            <td>${item.possiblity}</td>
+                                            <td>${item.possibility}</td>
                                             <td>${item.effect}</td>
                                             <td>${item.threshold}</td>
                                             <td>${item.poster}</td>

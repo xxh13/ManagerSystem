@@ -26,6 +26,7 @@ public class RiskPlanServlet extends HttpServlet {
         try {
             RiskPlanUtil riskPlanUtil = new RiskPlanUtil();
             List<RiskPlan> riskPlanList = riskPlanUtil.riskPlanAll();
+            System.out.println(riskPlanList.size());
 
             request.getSession().setAttribute("riskPlanList", riskPlanList);
             response.sendRedirect("jsp/manage/riskPlanList.jsp");

@@ -38,6 +38,8 @@ public class Danger {
         this.rid = rid;
     }
 
+    public Danger(){}
+
     public int getDid() {
         return did;
     }
