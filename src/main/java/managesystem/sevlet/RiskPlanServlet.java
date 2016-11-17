@@ -9,30 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
+import java.util.List;
 
 /**
- * 新增风险计划
  * Created by XXH on 2016/11/17.
  */
-@WebServlet(name = "RiskPlanServlet", urlPatterns = "/riskPlan/add")
+@WebServlet(name = "RiskPlanServlet" , urlPatterns = "/riskPlan")
 public class RiskPlanServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        RiskPlanUtil riskPlanUtil = new RiskPlanUtil();
-        String name = request.getParameter("name");
-        try {
-            RiskPlan riskPlan = new RiskPlan(name, new Date());
-            riskPlanUtil.addRisPlan(riskPlan);
-        }catch (Exception e) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        try {
+            RiskPlanUtil riskPlanUtil = new RiskPlanUtil();
+            List<RiskPlan> riskPlanList = riskPlanUtil.riskPlanAll();
+            System.out.println(riskPlanList.size());
 
+            request.getSession().setAttribute("riskPlanList", riskPlanList);
+            response.sendRedirect("jsp/manage/riskPlanList.jsp");
+        }catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

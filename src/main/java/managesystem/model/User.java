@@ -70,4 +70,10 @@ public class User {
         this.identity = identity;
         this.pswd = pswd;
     }
+
+    public User(String name, String identity, String pswd) {
+        this.name = name;
+        this.identity = identity;
+        this.pswd = pswd;
+    }
 }

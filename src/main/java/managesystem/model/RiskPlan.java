@@ -9,7 +9,7 @@ import java.util.Date;
 public class RiskPlan {
     int rid;
     String name;
-    Date date;
+    Date time;
 
     public int getRid() {
         return rid;
@@ -19,12 +19,12 @@ public class RiskPlan {
         this.rid = rid;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getTime() {
+        return time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(Date date) {
+        this.time = date;
     }
 
     public String getName() {
@@ -38,12 +38,12 @@ public class RiskPlan {
     public RiskPlan(int rid, String name, Date date) {
         this.rid = rid;
         this.name = name;
-        this.date = date;
+        this.time = date;
     }
 
     public RiskPlan(String name, Date date) {
         this.name = name;
-        this.date = date;
+        this.time = date;
     }
 
 }

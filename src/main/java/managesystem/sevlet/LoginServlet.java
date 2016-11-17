@@ -23,17 +23,18 @@ public class LoginServlet extends HttpServlet {
             UserUtil userUtil = new UserUtil();
             User user = userUtil.getUserByEmail(email);
             if (user == null) {
-                System.out.print("用户名或密码错误");
+                response.getWriter().print("false");
             }else {
                 if (user.getPswd().equals(password)){
                     request.getSession().setAttribute("name", user.getName());
                     request.getSession().setAttribute("identity", identity);
+                    response.getWriter().print("true");
                 }else {
-                    System.out.print("用户名或密码错误");
+                    response.getWriter().print("false");
                 }
             }
         }catch (Exception e) {
-
+            System.out.print(e);
         }
     }
 

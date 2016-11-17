@@ -45,7 +45,7 @@ $('#submitForm').click(
         }
 
         $.post(
-            "/register/post",
+            "/register",
             {
                 "email":email,
                 "identity":identity,

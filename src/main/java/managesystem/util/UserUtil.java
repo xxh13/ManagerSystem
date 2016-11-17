@@ -17,30 +17,32 @@ public class UserUtil {
 
 
     public User getUserByEmail(String email) throws Exception{
-        String sql = "select * from user where name = " + email;
+        String sql = "select COUNT(*) from user where name = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
-        if (rs.getFetchSize() == 0) {
+        rs.next();
+        if (rs.getInt(1) == 0) {
             pstmt.close();
-            conn.close();
             return null;
         }
         else {
+            pstmt = conn.prepareStatement("select * from user where name = " + email);
+            rs = pstmt.executeQuery();
+            rs.next();
+            User user = new User(rs.getInt("uid"), rs.getString("name"), rs.getString("identity"), rs.getString("pswd"));
             pstmt.close();
-            conn.close();
-            return new User(rs.getInt("uid"), rs.getString("name"), rs.getString("identity"), rs.getString("pswd"));
+            return user;
         }
     }
 
     public void addUser(User user) throws Exception{
-        String sql = "insert into user(uid, name, identity, pswd) values(?,?,?,?)";
+        String sql = "insert into user(name, identity, pswd) values(?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, user.getUid());
-        pstmt.setString(2, user.getName());
-        pstmt.setString(3, user.getIdentity());
-        pstmt.setString(2, user.getPswd());
+        pstmt.setString(1, user.getName());
+        pstmt.setString(2, user.getIdentity());
+        pstmt.setString(3, user.getPswd());
         pstmt.executeUpdate();
         pstmt.close();
-        conn.close();
     }
 }
