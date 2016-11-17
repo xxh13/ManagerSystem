@@ -59,4 +59,15 @@ public class User {
                 ", pswd='" + pswd + '\'' +
                 '}';
     }
+
+    public User(){
+
+    }
+
+    public User(int uid, String name, String identity, String pswd) {
+        this.uid = uid;
+        this.name = name;
+        this.identity = identity;
+        this.pswd = pswd;
+    }
 }
