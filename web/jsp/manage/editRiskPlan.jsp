@@ -69,7 +69,6 @@
                                 <th>影响程度</th>
                                 <th>触发器/阈值</th>
                                 <th>提交者</th>
-                                <th>追踪者</th>
                                 <th>状态描述</th>
                                 <th>描述信息</th>
                                 <th>操作</th>
@@ -87,15 +86,14 @@
                                     <c:forEach items="${dangerList}" var="item" varStatus="i">
                                         <tr>
                                             <td style="width: 35%">${item.content}</td>
-                                            <td>${item.possiblity}</td>
+                                            <td>${item.possibility}</td>
                                             <td>${item.effect}</td>
                                             <td>${item.threshold}</td>
                                             <td>${item.poster}</td>
-                                            <td>${item.tracer}</td>
-                                            <td>${item.conditiondescription}</td>
+                                            <td>${item.condition}</td>
                                             <td>${item.description}</td>
                                             <td>
-                                                <a href="/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
+                                                <a href="/view/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
                                                 <a href="javascript:del(${item.did})" class="button button-primary button-rounded button-small button-caution" style="padding: 0 15px 0 15px">删除</a>
                                             </td>
                                         </tr>
@@ -108,7 +106,7 @@
 
                         <div class="form-group form-line">
                             <div class="col-sm-10">
-                                <a href="/addDanger" class="button button-uppercase button-primary">增加风险条目</a>
+                                <a href="/view/addDanger" class="button button-uppercase button-primary">增加风险条目</a>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </div>
@@ -139,7 +137,7 @@
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="js/sweetalert.min.js"></script>
+<script src="../../js/sweetalert.min.js"></script>
 <script>
 
     function del(id){
@@ -153,15 +151,17 @@
                     closeOnConfirm: false
                 },
                 function(){
+                    alert(id);
                     $.post(
-                            "/delDanger?id="+id,
+                            "/danger/del",
                             {
-                                "did":did
+                                "did":id
                             },
                             function(data){
+                                alert(data);
                                 if(data=="success"){
                                     swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                                    location.href="/editRiskPlan";
+                                    location.href="/view/editRiskPlan";
                                 }
                             }
                     );

@@ -31,7 +31,7 @@ $('#addDanger').click(
         alert(content+"|"+possiblity+"|"+effect+"|"+limit+"|"+poster+"|"+tracer);
 
         $.post(
-            "/postDanger",
+            "/danger/add",
             {
                 "content":content,
                 "possiblity":possiblity,
@@ -43,7 +43,7 @@ $('#addDanger').click(
             function(data){
                 if(data=="success"){
                     alert("新增风险条目成功！");
-                    location.href='/postedList';
+                    location.href='/view/editRiskPlan';
                 }else{
                     alert("未知错误，请重试！");
                 }

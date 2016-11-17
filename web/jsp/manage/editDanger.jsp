@@ -76,7 +76,7 @@
                         <div class="form-group form-line">
                             <label for="possiblity" class="col-sm-2 control-label">可能性：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="possiblity" name="possiblity" rows="3" value="${danger.possiblity}" readonly>
+                                <input type="text" class="form-control from-input" id="possiblity" name="possiblity" rows="3" value="${danger.possibility}" readonly>
                             </div>
                         </div>
 
@@ -100,19 +100,11 @@
                                 <input type="text" class="form-control from-input" id="poster" name="poster" value="${danger.poster}" readonly>
                             </div>
                         </div>
-
-                        <div class="form-group form-line">
-                            <label for="tracer" class="col-sm-2 control-label">跟踪者：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="tracer" name="tracer" value=${danger.tracer} readonly>
-                            </div>
-                        </div>
-
                         <div class="form-group form-line">
                             <label for="conditiondescription" class="col-sm-2 control-label">状态描述：</label>
                             <div class="col-sm-10">
                                 <c:choose>
-                                    <c:when test="${danger.conditiondescription=='风险'}">
+                                    <c:when test="${danger.condition=='风险'}">
                                         <label class="radio-inline">
                                             <input type="radio" name="conditiondescription" value="1" checked="true"> 风险
                                         </label>
@@ -194,15 +186,18 @@
         var desccription=document.getElementById("description").value;
 
         $.post(
-                "/update",
+                "/danger/update",
                 {   "did":did,
-                    "conditiondescription":conditiondescription,
-                    "desccription":desccription,
+                    "condition":conditiondescription,
+                    "description":desccription,
+                    "rid":"1"
                 },
                 function(data){
+
                     if(data=="success"){
+
                         alert("追踪风险条目成功！");
-                        location.href="/editRiskPlan";
+                        location.href="/view/editRiskPlan";
                     }else{
                         alert("未知错误，请重试！");
                     }

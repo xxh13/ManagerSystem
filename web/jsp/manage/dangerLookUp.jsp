@@ -215,7 +215,7 @@
         var startdate=document.getElementById("startdate").value;
         var enddate=document.getElementById("enddate").value;
         alert(startdate+"|"+enddate);
-        location.href="/dangerLookUp?startdate="+startdate+"&enddate="+enddate;
+        location.href="/getDangerByTime?startdate="+startdate+"&enddate="+enddate;
     }
 
 </script>

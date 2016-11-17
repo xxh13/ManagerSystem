@@ -66,7 +66,9 @@
                         <div style="min-height: 15px"></div>
                         <div class="bs-example">
                             <ul class="nav nav-pills" role="tablist">
-                                <li id="ApplyHistogramFilter" role="presentation" class="active"><a href="javascript:void(0)">Apply Filter</a></li>
+                                <li id="ApplyHistogramFilter" role="presentation" class="active">
+                                    <a href="javascript:lookup()"  style="background-color: #4cb0f9;border-color: #4cb0f9;color: #FFF;border-radius: 0;padding: 10px 20px 10px 20px;font-weight: bolder">查询</a>
+                                </li>
                                 <li role="presentation" class="dropdown">
                                     <div style="padding-top: 5px;font-weight: bolder;font-size: medium;margin-left: 20px;margin-right: 5px">开始于</div>
                                 </li>
@@ -114,8 +116,16 @@
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="js/echarts.min.js"></script>
+<script src="../../js/echarts.min.js"></script>
 <script>
+
+    function lookup(){
+        var startdate=document.getElementById("startdate").value;
+        var enddate=document.getElementById("enddate").value;
+        alert(startdate+"|"+enddate);
+        location.href="/dangerLookUp?startdate="+startdate+"&enddate="+enddate;
+    }
+
     //直方图
     var histogramChart = echarts.init(document.getElementById('histogramChart'));
     histogramChart.setOption({

@@ -14,7 +14,11 @@ public interface DangerService {
 
     public String deleteDanger(int did);
 
-    public List<Danger> get(Date d1,Date d2);
+    public List<Danger> getDangersByTime(Date d1,Date d2);
+
+    public List<Danger> getDangersByRid(int rid);
+
+    public Danger getDangerByDid(int did);
 
     public String update(Danger danger);
 
