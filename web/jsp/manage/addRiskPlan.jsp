@@ -1,9 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: cristph
-  Date: 2016/11/6
-  Time: 18:34
+  Date: 2016/11/17
+  Time: 9:37
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,14 +17,14 @@
     <meta name="author" content="cristph">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>ManageSystem | 输入风险条目</title>
+    <title>ManageSystem | 新增风险计划</title>
 
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/reset.css" rel="stylesheet">
-    <link href="../../css/store.css" rel="stylesheet">
-    <link href="../../css/usersetting.css" rel="stylesheet">
-    <link href="../../css/buttons.css" rel="stylesheet">
-    <link href="../../css/footer.css" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/store.css" rel="stylesheet">
+    <link href="css/usersetting.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 
 </head>
 
@@ -61,74 +60,30 @@
 
             <div class="col-sm-10 frame-middle">
 
-                <div class="title-box">输入风险条目</div>
+                <div class="title-box">新增风险计划</div>
 
                 <div class="white-box">
 
                     <form class="form-horizontal form-wrapper"  style="padding-right: 6%;padding-top: 1%" accept-charset="utf-8">
 
                         <div class="form-group form-line">
-                            <label for="content" class="col-sm-2 control-label">风险内容：</label>
+                            <label for="riskPlanName" class="col-sm-2 control-label">风险计划名称：</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control from-input" id="content" name="content" rows="3"></textarea>
+                                <input type="text" class="form-control from-input" id="riskPlanName" name="riskPlanName" >
                             </div>
                         </div>
 
                         <div class="form-group form-line">
-                            <label for="possiblity" class="col-sm-2 control-label">可能性：</label>
+                            <label for="creator" class="col-sm-2 control-label">创建者：</label>
                             <div class="col-sm-10">
-                                <label class="radio-inline">
-                                    <input type="radio" name="possiblity" value="1"> 低
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="possiblity"  value="2"> 中
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="possiblity"  value="2"> 高
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-line">
-                            <label for="effect" class="col-sm-2 control-label">影响程度：</label>
-                            <div class="col-sm-10">
-                                <label class="radio-inline">
-                                    <input type="radio" name="effect" value="1"> 低
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="effect"  value="2"> 中
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="effect"  value="2"> 高
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-line">
-                            <label for="limit" class="col-sm-2 control-label">触发器/阈值：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="limit" name="limit" >
-                            </div>
-                        </div>
-
-                        <div class="form-group form-line">
-                            <label for="poster" class="col-sm-2 control-label">提交者：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="poster" name="poster" value="${username}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-line">
-                            <label for="tracer" class="col-sm-2 control-label">跟踪者：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="tracer" name="tracer" >
+                                <input type="text" class="form-control from-input" id="creator" name="creator" value="creator" readonly>
                             </div>
                         </div>
 
 
                         <div class="form-group form-line">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <input type="button"  value="保存改动" class="btn btn-block post-btn" id="createwaiter">
+                                <input type="button"  value="增加计划" class="btn btn-block post-btn" id="addRiskPlan">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </div>
@@ -162,6 +117,23 @@
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
-<script src="js/addDanger.js"></script>
+<script>
+    $('#addRiskPlan').click(
+            function(){
+                var name=document.getElementById("riskPlanName").value;
+                $.post(
+                        "/addRiskPlan",
+                        {
+                            "name":name
+                        },
+                        function(data){
+                            if(data=="success"){
+                                location.href="/riskPlanList";
+                            }
+                        }
+                );
+            }
+    );
+</script>
 </body>
 </html>

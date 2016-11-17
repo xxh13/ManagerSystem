@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: cristph
-  Date: 2016/11/6
-  Time: 23:22
+  Date: 2016/11/17
+  Time: 9:48
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,15 +18,15 @@
     <meta name="author" content="cristph">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>ManageSystem | 已提交风险条目列表</title>
+    <title>ManageSystem | 风险条目列表</title>
 
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/reset.css" rel="stylesheet">
-    <link href="../../css/store.css" rel="stylesheet">
-    <link href="../../css/usersetting.css" rel="stylesheet">
-    <link href="../../css/buttons.css" rel="stylesheet">
-    <link href="../../css/footer.css" rel="stylesheet">
-    <link href="../../css/shoppingcart.css" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/store.css" rel="stylesheet">
+    <link href="css/usersetting.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 </head>
 
 <body>
@@ -56,16 +56,11 @@
     <div class="container inner-frame">
         <div class="row main-frame">
 
-            <div class="col-sm-1 frame-left">
-                <a href="${pageContext.request.contextPath}/poster"><div class="setting-left">输入风险条目</div></a>
-                <a href="${pageContext.request.contextPath}/postedList"><div class="setting-left">已经提交的风险条目列表</div></a>
-            </div>
-
             <div class="col-sm-11 frame-middle">
-                <div class="title-box">已经提交的风险条目列表：</div>
+                <div class="title-box">风险计划——[ ]：</div>
                 <div class="white-box">
                     <form class="form-horizontal form-wrapper"  style="padding-right: 6%;padding-top: 1%" accept-charset="utf-8">
-                        <p style="color: black;font-size: 15px;font-weight: bolder">风险条目：</p>
+                        <p style="color: black;font-size: 15px;font-weight: bolder">风险条目列表：</p>
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -77,6 +72,7 @@
                                 <th>追踪者</th>
                                 <th>状态描述</th>
                                 <th>描述信息</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -98,6 +94,10 @@
                                             <td>${item.tracer}</td>
                                             <td>${item.conditiondescription}</td>
                                             <td>${item.description}</td>
+                                            <td>
+                                                <a href="/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
+                                                <a href="javascript:del(${item.did})" class="button button-primary button-rounded button-small button-caution" style="padding: 0 15px 0 15px">删除</a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
@@ -105,6 +105,13 @@
 
                             </tbody>
                         </table>
+
+                        <div class="form-group form-line">
+                            <div class="col-sm-10">
+                                <a href="/addDanger" class="button button-uppercase button-primary">增加风险条目</a>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            </div>
+                        </div>
 
                     </form>
                 </div>
@@ -132,7 +139,35 @@
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</body>
-</html>
+<script src="js/sweetalert.min.js"></script>
+<script>
+
+    function del(id){
+        swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                },
+                function(){
+                    $.post(
+                            "/delDanger?id="+id,
+                            {
+                                "did":did
+                            },
+                            function(data){
+                                if(data=="success"){
+                                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                    location.href="/editRiskPlan";
+                                }
+                            }
+                    );
+
+                });
+    }
+</script>
 </body>
 </html>

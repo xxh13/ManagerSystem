@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: cristph
-  Date: 2016/11/6
-  Time: 15:27
+  Date: 2016/11/17
+  Time: 11:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,15 +18,15 @@
     <meta name="author" content="cristph">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>ManageSystem | 风险条目列表</title>
+    <title>ManageSystem | 风险计划列表</title>
 
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/reset.css" rel="stylesheet">
-    <link href="../../css/store.css" rel="stylesheet">
-    <link href="../../css/usersetting.css" rel="stylesheet">
-    <link href="../../css/buttons.css" rel="stylesheet">
-    <link href="../../css/footer.css" rel="stylesheet">
-    <link href="../../css/shoppingcart.css" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/store.css" rel="stylesheet">
+    <link href="css/usersetting.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 </head>
 
 <body>
@@ -56,52 +56,35 @@
     <div class="container inner-frame">
         <div class="row main-frame">
 
-            <%--<div class="col-sm-1 frame-left">--%>
-                <%--<a href="${pageContext.request.contextPath}/addProductView?picpath="><div class="setting-left">制定新产品</div></a>--%>
-                <%--<a href="${pageContext.request.contextPath}/productList"><div class="setting-left">产品库</div></a>--%>
-                <%--<a href="${pageContext.request.contextPath}/addGoodProject?picpath="><div class="setting-left">制定产品计划</div></a>--%>
-                <%--<a href="${pageContext.request.contextPath}/saleplanlist"><div class="setting-left">查看产品计划</div></a>--%>
-            <%--</div>--%>
-
             <div class="col-sm-11 frame-middle">
-                <div class="title-box">风险条目列表：</div>
+                <div class="title-box">风险计划列表：</div>
                 <div class="white-box">
                     <form class="form-horizontal form-wrapper"  style="padding-right: 6%;padding-top: 1%" accept-charset="utf-8">
-                        <p style="color: black;font-size: 15px;font-weight: bolder">风险条目：</p>
+                        <p style="color: black;font-size: 15px;font-weight: bolder">风险计划列表：</p>
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>内容</th>
-                                <th>可能性</th>
-                                <th>影响程度</th>
-                                <th>触发器/阈值</th>
-                                <th>提交者</th>
-                                <th>追踪者</th>
-                                <th>状态描述</th>
-                                <th>描述信息</th>
+                                <th>计划名称</th>
+                                <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             <c:choose>
-                                <c:when test="${dangerList.size()==0}">
+                                <c:when test="${riskPlanList.size()==0}">
                                     <tr>
-                                        <td style="font-weight: bolder;color: black">暂无产品！</td>
+                                        <td style="font-weight: bolder;color: black">暂无风险计划！</td>
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach items="${dangerList}" var="item" varStatus="i">
+                                    <c:forEach items="${riskPlanList}" var="item" varStatus="i">
                                         <tr>
-                                            <td style="width: 35%">${item.content}</td>
-                                            <td>${item.possiblity}</td>
-                                            <td>${item.effect}</td>
-                                            <td>${item.threshold}</td>
-                                            <td>${item.poster}</td>
-                                            <td>${item.tracer}</td>
-                                            <td>${item.conditiondescription}</td>
-                                            <td>${item.description}</td>
-                                            <td> <button type="button" class="btn btn-primary" id="PanTemp"  onclick="edit(${item.did})">编辑</button></td>
+                                            <td style="width: 35%">${item.name}</td>
+                                            <td>${item.time}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" id="PanTemp"  onclick="edit(${item.rid})">查看</button>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
@@ -136,9 +119,10 @@
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
 <script>
-    function edit(did){
-        location.href="/edit?did="+did;
+    function edit(rid){
+        location.href="/editRiskPlan?rid="+rid;
     }
 </script>
 </body>

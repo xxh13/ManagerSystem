@@ -2,7 +2,7 @@
  * Created by cristph on 2016/3/18.
  */
 
-$('#createwaiter').click(
+$('#addDanger').click(
     function(){
         var str=new Array('低','中','高');
 
@@ -28,10 +28,10 @@ $('#createwaiter').click(
         var poster=document.getElementById("poster").value;
         var tracer=document.getElementById("tracer").value;
 
-        // alert(content+"|"+possiblity+"|"+effect+"|"+limit+"|"+poster+"|"+tracer);
+        alert(content+"|"+possiblity+"|"+effect+"|"+limit+"|"+poster+"|"+tracer);
 
         $.post(
-            "/addDanger",
+            "/postDanger",
             {
                 "content":content,
                 "possiblity":possiblity,

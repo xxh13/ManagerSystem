@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: cristph
-  Date: 2016/11/6
-  Time: 21:48
+  Date: 2016/11/17
+  Time: 10:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,11 +21,11 @@
     <title>ManageSystem | 输入风险条目</title>
 
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/reset.css" rel="stylesheet">
-    <link href="../../css/store.css" rel="stylesheet">
-    <link href="../../css/usersetting.css" rel="stylesheet">
-    <link href="../../css/buttons.css" rel="stylesheet">
-    <link href="../../css/footer.css" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/store.css" rel="stylesheet">
+    <link href="css/usersetting.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 
 </head>
 
@@ -110,7 +111,25 @@
                         <div class="form-group form-line">
                             <label for="conditiondescription" class="col-sm-2 control-label">状态描述：</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control from-input" id="conditiondescription" name="conditiondescription" rows="3" >${danger.conditiondescription}</textarea>
+                                <c:choose>
+                                    <c:when test="${danger.conditiondescription=='风险'}">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="conditiondescription" value="1" checked="true"> 风险
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="conditiondescription"  value="2"> 问题
+                                        </label>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="conditiondescription" value="1"> 风险
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="conditiondescription"  value="2" checked="true"> 问题
+                                        </label>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                         </div>
 
@@ -162,23 +181,32 @@
 <script>
     function update(){
         var did=document.getElementById("did").value;
-            var conditiondescription=document.getElementById("conditiondescription").value;
-            var desccription=document.getElementById("description").value;
 
-            $.post(
-            "/update",
-            {    "did":did,
-                "conditiondescription":conditiondescription,
-                "desccription":desccription,
-            },
-            function(data){
-                if(data=="success"){
-                    alert("追踪风险条目成功！");
-                    location.href="/tracer";
-                }else{
-                    alert("未知错误，请重试！");
-                }
-            });
+        var str=new Array('风险','问题');
+        var conditiondescription='';
+        var obj=document.getElementsByName("conditiondescription");
+        for(var i=0;i<obj.length;i++) {
+            if(obj[i].checked){
+                conditiondescription=str[i];
+            }
+        }
+
+        var desccription=document.getElementById("description").value;
+
+        $.post(
+                "/update",
+                {   "did":did,
+                    "conditiondescription":conditiondescription,
+                    "desccription":desccription,
+                },
+                function(data){
+                    if(data=="success"){
+                        alert("追踪风险条目成功！");
+                        location.href="/editRiskPlan";
+                    }else{
+                        alert("未知错误，请重试！");
+                    }
+                });
     }
 </script>
 </body>
