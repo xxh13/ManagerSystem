@@ -14,15 +14,15 @@ public class Danger {
 
     @Id
     private int did;
-
     private String content;
-    private String possiblity;
+    private String possibility;
     private String effect;
     private String threshold;
     private String poster;
-    private String tracer;
-    private String conditiondescription;
+    private String condition;
     private String description;
+    private String time;
+    private String rid;
 
     public int getDid() {
         return did;
@@ -38,14 +38,6 @@ public class Danger {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getPossiblity() {
-        return possiblity;
-    }
-
-    public void setPossiblity(String possiblity) {
-        this.possiblity = possiblity;
     }
 
     public String getEffect() {
@@ -72,22 +64,6 @@ public class Danger {
         this.poster = poster;
     }
 
-    public String getTracer() {
-        return tracer;
-    }
-
-    public void setTracer(String tracer) {
-        this.tracer = tracer;
-    }
-
-    public String getConditiondescription() {
-        return conditiondescription;
-    }
-
-    public void setConditiondescription(String conditiondescription) {
-        this.conditiondescription = conditiondescription;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -101,13 +77,44 @@ public class Danger {
         return "Danger{" +
                 "did=" + did +
                 ", content='" + content + '\'' +
-                ", possiblity='" + possiblity + '\'' +
+                ", possibility='" + possibility + '\'' +
                 ", effect='" + effect + '\'' +
                 ", threshold='" + threshold + '\'' +
                 ", poster='" + poster + '\'' +
-                ", tracer='" + tracer + '\'' +
-                ", conditiondescription='" + conditiondescription + '\'' +
+                ", condition='" + condition + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public String getPossibility() {
+        return possibility;
+    }
+
+    public void setPossibility(String possibility) {
+        this.possibility = possibility;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getRid() {
+        return rid;
+    }
+
+    public void setRid(String rid) {
+        this.rid = rid;
     }
 }
