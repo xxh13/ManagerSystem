@@ -1,7 +1,7 @@
 package managesystem.sevlet;
 
 import managesystem.model.User;
-//import managesystem.util.UserUtil;
+import managesystem.util.UserUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,18 +23,23 @@ public class RegisterServlet extends HttpServlet {
         String identity = request.getParameter("identity");
         String password = request.getParameter("password");
 
-        /*UserUtil userUtil = new UserUtil();
+        System.out.println(email + " email");
+        System.out.println(identity + " identity");
+        System.out.println(password + " password");
+
+        UserUtil userUtil = new UserUtil();
         try {
+            System.out.println("user");
             User user = userUtil.getUserByEmail(email);
             if (user == null) {
-                User userAdd = new User();
+                User userAdd = new User(email, identity, password);
                 userUtil.addUser(userAdd);
             }else {
 
             }
         }catch (Exception e) {
-
-        }*/
+            System.out.print(e);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

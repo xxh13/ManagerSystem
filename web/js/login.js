@@ -31,7 +31,7 @@ $('#submitLogin').click(
         }
 
         $.post(
-            "/login/post",
+            "/login",
             {
                 "email":email,
                 "identity":identity,
