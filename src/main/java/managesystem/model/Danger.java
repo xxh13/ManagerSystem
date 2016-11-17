@@ -24,6 +24,20 @@ public class Danger {
     private String time;
     private int rid;
 
+    public Danger(int did, String content, String possibility, String effect, String threshold,
+                  String poster, String condition, String description, String time, int rid) {
+        this.did = did;
+        this.content = content;
+        this.possibility = possibility;
+        this.effect = effect;
+        this.threshold = threshold;
+        this.poster = poster;
+        this.condition = condition;
+        this.description = description;
+        this.time = time;
+        this.rid = rid;
+    }
+
     public int getDid() {
         return did;
     }
