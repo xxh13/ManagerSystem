@@ -1,7 +1,7 @@
 package managesystem.sevlet;
 
 import managesystem.model.User;
-import managesystem.util.UserUtil;
+//import managesystem.util.UserUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String identity = request.getParameter("identity");
         String password = request.getParameter("password");
 
-        UserUtil userUtil = new UserUtil();
+        /*UserUtil userUtil = new UserUtil();
         try {
             User user = userUtil.getUserByEmail(email);
             if (user == null) {
@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             }
         }catch (Exception e) {
 
-        }
+        }*/
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

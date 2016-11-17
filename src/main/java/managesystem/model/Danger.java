@@ -22,7 +22,7 @@ public class Danger {
     private String condition;
     private String description;
     private String time;
-    private String rid;
+    private int rid;
 
     public int getDid() {
         return did;
@@ -110,11 +110,11 @@ public class Danger {
         this.time = time;
     }
 
-    public String getRid() {
+    public int getRid() {
         return rid;
     }
 
-    public void setRid(String rid) {
+    public void setRid(int rid) {
         this.rid = rid;
     }
 }

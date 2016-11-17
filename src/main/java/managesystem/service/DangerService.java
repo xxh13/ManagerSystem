@@ -2,6 +2,7 @@ package managesystem.service;
 
 import managesystem.model.Danger;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,13 +10,13 @@ import java.util.List;
  */
 public interface DangerService {
 
-    public void save(Danger danger);
+    public String save(Danger danger);
 
-    public List<Danger> getDangerList(String tracer);
+    public String deleteDanger(int did);
 
-    public Danger get(int did);
+    public List<Danger> get(Date d1,Date d2);
 
-    public void update(int did, String condespt, String desp);
+    public String update(Danger danger);
 
-    public List<Danger> getPostedDangerList(String poster);
+
 }
