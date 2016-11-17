@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Created by XXH on 2016/11/17.
  */
-@WebServlet(name = "LoginServlet", urlPatterns = "/register")
+@WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
