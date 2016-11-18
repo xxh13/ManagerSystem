@@ -106,15 +106,15 @@ public class DangerServlet extends HttpServlet {
             String date1=request.getParameter("date1");
             String date2=request.getParameter("date2");
 
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
             try {
                 Date d1=sdf.parse(date1);
                 Date d2=sdf.parse(date2);
                 List<Danger> list=dangerService.getDangersByTime(d1,d2);
                 request.setAttribute("dangerList",list);
                 System.out.println("list的长度是"+list.size());
-                System.out.println("date1是"+date1);
-                System.out.println("date2是"+date2);
+                System.out.println("date1是"+d1);
+                System.out.println("date2是"+d2);
 
                 RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/dangerLookUp.jsp");
                 dispatcher.forward(request,response);

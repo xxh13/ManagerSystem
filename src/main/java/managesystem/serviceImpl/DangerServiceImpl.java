@@ -95,6 +95,7 @@ public class DangerServiceImpl implements DangerService{
             pstmt.setDate(1,sd1);
             pstmt.setDate(2,sd2);
             ResultSet rs=pstmt.executeQuery();
+            System.out.println("rs.size="+rs.getRow());
             /*Statement statement=connection.createStatement();
             ResultSet rs=statement.executeQuery(sql);*/
             List<Danger> list=new ArrayList<Danger>();
