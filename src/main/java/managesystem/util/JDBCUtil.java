@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class JDBCUtil {
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3306/msdb";
+    private static String url = "jdbc:mysql://192.168.47.13:3306/msdb";
     private static String username = "root";
     private static String password = "123";
 
