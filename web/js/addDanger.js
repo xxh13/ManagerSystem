@@ -45,7 +45,7 @@ $('#addDanger').click(
             function(data){
                 if(data=="success"){
                     alert("新增风险条目成功！");
-                    location.href='/ManageSystem/view/editRiskPlan?rid='+rid;
+                    location.href='/ManageSystem/editRiskPlan?rid='+rid;
                 }else{
                     alert("未知错误，请重试！");
                 }
