@@ -169,7 +169,7 @@
 //                                alert(data);
                                 if(data=="success"){
                                     swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                                    location.href="/ManageSystem/view/editRiskPlan?rid="+rid;
+                                    location.href="/ManageSystem/editRiskPlan?rid="+rid;
                                 }
                             }
                     );
