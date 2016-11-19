@@ -32,7 +32,7 @@ $('#addDanger').click(
         // alert(content+"|"+possiblity+"|"+effect+"|"+limit+"|"+poster+"|"+tracer+"|"+"rid:"+rid);
 
         $.post(
-            "/danger/add",
+            "/ManageSystem/danger/add",
             {
                 "content":content,
                 "possibility":possiblity,
