@@ -21,11 +21,11 @@
     <title>ManageSystem | 输入风险条目</title>
 
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/reset.css" rel="stylesheet">
-    <link href="css/store.css" rel="stylesheet">
-    <link href="css/usersetting.css" rel="stylesheet">
-    <link href="css/buttons.css" rel="stylesheet">
-    <link href="css/footer.css" rel="stylesheet">
+    <link href="../css/reset.css" rel="stylesheet">
+    <link href="../css/store.css" rel="stylesheet">
+    <link href="../css/usersetting.css" rel="stylesheet">
+    <link href="../css/buttons.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
 
 </head>
 
