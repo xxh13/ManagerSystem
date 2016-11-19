@@ -26,7 +26,7 @@
 </head>
 
 <body>
-<div class="outer-wrapper">
+<div class="outer-wrapper" style="min-height: 671px">
     <div class="container inner-wrapper">
         <div class="row">
 
