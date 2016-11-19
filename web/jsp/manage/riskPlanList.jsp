@@ -128,7 +128,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script>
     function edit(rid){
-        location.href="/editRiskPlan?rid="+rid;
+        location.href="/ManageSystem/editRiskPlan?rid="+rid;
     }
 </script>
 </body>

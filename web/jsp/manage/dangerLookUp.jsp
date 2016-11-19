@@ -182,7 +182,7 @@
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="js/echarts.min.js"></script>
+<script src="../../js/echarts.min.js"></script>
 <script>
 
     function startModal(){
@@ -199,13 +199,13 @@
         var importRiskPlanName=document.getElementById("importRiskPlanName").value;
 //        alert(importRiskPlanName+"|"+str);
         $.post(
-                "/importDanger",
+                "/ManageSystem/importDanger",
                 {
                     "dangerList":str,
                     "riskPlanName":importRiskPlanName
                 },
                 function(data){
-                    location.href="/editRiskPlan?rid="+data;
+                    location.href="/ManageSystem/editRiskPlan?rid="+data;
                 }
         );
     }
@@ -214,7 +214,7 @@
         var startdate=document.getElementById("startdate").value;
         var enddate=document.getElementById("enddate").value;
 //        alert(startdate+"|"+enddate);
-        location.href="/danger/getDangerByTime?date1="+startdate+"&date2="+enddate;
+        location.href="/ManageSystem/danger/getDangerByTime?date1="+startdate+"&date2="+enddate;
     }
 
 </script>

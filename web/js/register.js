@@ -47,7 +47,7 @@ $('#submitForm').click(
         alert(email+"|"+identity+"|"+pre_password);
 
         $.post(
-            "/register",
+            "/ManageSystem/register",
             {
                 "email":email,
                 "identity":identity,
@@ -66,7 +66,7 @@ $('#submitForm').click(
                 }
                 if(data=="success"){
                     alert("注册成功");
-                    location.href="/login";
+                    location.href="/ManageSystem/login";
                 }else if(data=="Email Exists"){
                     label= document.createElement("label");
                     label.id="infoLabel";

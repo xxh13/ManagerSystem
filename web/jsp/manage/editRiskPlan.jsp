@@ -159,7 +159,7 @@
                     var rid=document.getElementById("rid").value;
 //                    alert(id);
                     $.post(
-                            "/danger/del",
+                            "/ManageSystem/danger/del",
                             {
                                 "did":id
                             },
@@ -167,7 +167,7 @@
 //                                alert(data);
                                 if(data=="success"){
                                     swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                                    location.href="/view/editRiskPlan?rid="+rid;
+                                    location.href="/ManageSystem/view/editRiskPlan?rid="+rid;
                                 }
                             }
                     );

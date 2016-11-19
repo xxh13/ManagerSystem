@@ -189,7 +189,7 @@
         var rid=document.getElementById("rid").value;
 
         $.post(
-                "/danger/update",
+                "/ManageSystem/danger/update",
                 {   "did":did,
                     "condition":conditiondescription,
                     "description":desccription,
@@ -200,7 +200,7 @@
                     if(data=="success"){
 
                         alert("追踪风险条目成功！");
-                        location.href="/view/editRiskPlan?rid="+rid;
+                        location.href="/ManageSystem/view/editRiskPlan?rid="+rid;
                     }else{
                         alert("未知错误，请重试！");
                     }

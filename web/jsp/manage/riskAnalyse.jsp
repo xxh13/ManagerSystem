@@ -128,7 +128,7 @@
 //        alert(startdate+"|"+enddate);
 
         $.post(
-                "/danger/analyseDangerByTime",
+                "/ManageSystem/danger/analyseDangerByTime",
                 {
                     "date1":startdate,
                     "date2":enddate

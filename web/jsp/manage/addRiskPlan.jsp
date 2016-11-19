@@ -122,13 +122,13 @@
             function(){
                 var name=document.getElementById("riskPlanName").value;
                 $.post(
-                        "/addRiskPlan",
+                        "/ManageSystem/addRiskPlan",
                         {
                             "name":name
                         },
                         function(data){
                             if(data=="success"){
-                                location.href="/riskPlan";
+                                location.href="/ManageSystem/riskPlan";
                             }
                         }
                 );

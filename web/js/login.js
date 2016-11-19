@@ -32,7 +32,7 @@ $('#submitLogin').click(
         // alert(email+identity+password);
 
         $.post(
-            "/login",
+            "/ManageSystem/login",
             {
                 "email":email,
                 "identity":identity,
@@ -53,7 +53,7 @@ $('#submitLogin').click(
                 }else if(data=="Unknown Error"){
                     alert("未知错误，请尝试重新登录！");
                 } else if(data=="true"){
-                    location.href="/riskPlan";
+                    location.href="/ManageSystem/riskPlan";
                 }
         });
 });
