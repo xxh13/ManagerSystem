@@ -97,7 +97,7 @@
                                             <td>${item.condition}</td>
                                             <td>${item.description}</td>
                                             <td>
-                                                <a href="/view/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
+                                                <a href="${pageContext.request.contextPath}/view/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
                                                 <a href="javascript:del(${item.did})" class="button button-primary button-rounded button-small button-caution" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">删除</a>
                                             </td>
                                         </tr>
