@@ -59,7 +59,7 @@
             <div class="col-sm-1 frame-left">
                 <a href="${pageContext.request.contextPath}/addRiskPlan"><div class="setting-left">新增风险计划</div></a>
                 <a href="${pageContext.request.contextPath}/riskPlan"><div class="setting-left">风险计划列表</div></a>
-                <a href="${pageContext.request.contextPath}/view/riskAnalyse" target="_blank"><div class="setting-left">风险库统计</div></a>
+                <a href="${pageContext.request.contextPath}/view/riskAnalyse"><div class="setting-left">风险库统计</div></a>
             </div>
 
             <div class="col-sm-10 frame-middle">
@@ -128,7 +128,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script>
     function edit(rid){
-        location.href="/ManageSystem/editRiskPlan?rid="+rid;
+        location.href="/editRiskPlan?rid="+rid;
     }
 </script>
 </body>
