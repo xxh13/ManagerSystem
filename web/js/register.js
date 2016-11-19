@@ -44,7 +44,7 @@ $('#submitForm').click(
             return;
         }
 
-        alert(email+"|"+identity+"|"+pre_password);
+        // alert(email+"|"+identity+"|"+pre_password);
 
         $.post(
             "/ManageSystem/register",
