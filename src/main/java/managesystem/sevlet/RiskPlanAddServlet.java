@@ -33,6 +33,6 @@ public class RiskPlanAddServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
+        response.sendRedirect("jsp/manage/addRiskPlan.jsp");
     }
 }

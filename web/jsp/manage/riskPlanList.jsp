@@ -56,7 +56,12 @@
     <div class="container inner-frame">
         <div class="row main-frame">
 
-            <div class="col-sm-11 frame-middle">
+            <div class="col-sm-1 frame-left">
+                <a href="${pageContext.request.contextPath}/addRiskPlan"><div class="setting-left">新增风险计划</div></a>
+                <a href="${pageContext.request.contextPath}/riskPlan"><div class="setting-left">风险计划列表</div></a>
+            </div>
+
+            <div class="col-sm-10 frame-middle">
                 <div class="title-box">风险计划列表：</div>
                 <div class="white-box">
                     <form class="form-horizontal form-wrapper"  style="padding-right: 6%;padding-top: 1%" accept-charset="utf-8">

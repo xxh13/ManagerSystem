@@ -55,7 +55,7 @@
         <div class="row main-frame">
 
             <div class="col-sm-1 frame-left">
-                <a href="${pageContext.request.contextPath}/tracer"><div class="setting-left">风险条目列表</div></a>
+                <a href="${pageContext.request.contextPath}/editRiskPlan"><div class="setting-left">风险计划</div></a>
             </div>
 
             <div class="col-sm-10 frame-middle">

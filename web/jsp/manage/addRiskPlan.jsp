@@ -5,6 +5,7 @@
   Time: 9:37
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
@@ -54,8 +55,8 @@
         <div class="row main-frame">
 
             <div class="col-sm-1 frame-left">
-                <a href="${pageContext.request.contextPath}/poster"><div class="setting-left">输入风险条目</div></a>
-                <a href="${pageContext.request.contextPath}/postedList"><div class="setting-left">已经提交的风险条目列表</div></a>
+                <a href="${pageContext.request.contextPath}/addRiskPlan"><div class="setting-left">新增风险计划</div></a>
+                <a href="${pageContext.request.contextPath}/riskPlan"><div class="setting-left">风险计划列表</div></a>
             </div>
 
             <div class="col-sm-10 frame-middle">
@@ -76,7 +77,7 @@
                         <div class="form-group form-line">
                             <label for="creator" class="col-sm-2 control-label">创建者：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="creator" name="creator" value="creator" readonly>
+                                <input type="text" class="form-control from-input" id="creator" name="creator" value="${name}" readonly>
                             </div>
                         </div>
 

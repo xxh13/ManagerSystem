@@ -54,7 +54,7 @@
         <div class="row main-frame">
 
             <div class="col-sm-1 frame-left">
-                <a href="${pageContext.request.contextPath}/poster"><div class="setting-left">输入风险条目</div></a>
+                <a href="${pageContext.request.contextPath}/editRiskPlan"><div class="setting-left">风险计划</div></a>
             </div>
 
             <div class="col-sm-10 frame-middle">
@@ -126,7 +126,7 @@
 
                         <div class="form-group form-line">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <input type="button"  value="保存改动" class="btn btn-block post-btn" id="addDanger">
+                                <input type="button"  value="增加风险条目" class="btn btn-block post-btn" id="addDanger">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </div>
