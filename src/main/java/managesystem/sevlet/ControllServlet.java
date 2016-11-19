@@ -24,13 +24,16 @@ public class ControllServlet extends HttpServlet {
         String view=path.substring(path.lastIndexOf('/')+1);
 
         DangerService ds=new DangerServiceImpl();
+
+        String contextPath=request.getContextPath();
+
         if(view.equals("addDanger")){
             String rid=request.getParameter("rid");
             request.getSession().setAttribute("rid", rid);
-            response.sendRedirect("/jsp/manage/addDanger.jsp");
+            response.sendRedirect(contextPath+"/jsp/manage/addDanger.jsp");
         }
         else if(view.equals("editRiskPlan")){
-           RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/editRiskPlan.jsp");
+           RequestDispatcher dispatcher=request.getRequestDispatcher(contextPath+"/jsp/manage/editRiskPlan.jsp");
             String rid=request.getParameter("rid");
             List<Danger> list=ds.getDangersByRid(Integer.parseInt(rid));
             System.out.println("list的长度="+list.size());
@@ -38,17 +41,17 @@ public class ControllServlet extends HttpServlet {
             dispatcher.forward(request,response);
         }
         else if(view.equals("editDanger")){
-            RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/editDanger.jsp");
+            RequestDispatcher dispatcher=request.getRequestDispatcher(contextPath+"/jsp/manage/editDanger.jsp");
             Danger danger=ds.getDangerByDid(Integer.parseInt(request.getParameter("did")));
             request.setAttribute("danger",danger);
             dispatcher.forward(request,response);
         }
         else if(view.equals("riskAnalyse")){
-            RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/riskAnalyse.jsp");
+            RequestDispatcher dispatcher=request.getRequestDispatcher(contextPath+"/jsp/manage/riskAnalyse.jsp");
             dispatcher.forward(request,response);
         }
         else if(view.equals("dangerLookUp")){
-            RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/dangerLookUp.jsp");
+            RequestDispatcher dispatcher=request.getRequestDispatcher(contextPath+"/jsp/manage/dangerLookUp.jsp");
             dispatcher.forward(request,response);
         }
 
