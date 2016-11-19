@@ -57,7 +57,11 @@
         <div class="row main-frame">
 
             <div class="col-sm-11 frame-middle">
-                <div class="title-box">风险计划——[ ]：</div>
+                <div class="title-box">
+
+                    风险计划——[${rid} ]：
+                    <a href="${pageContext.request.contextPath}/riskPlan" class="button button-primary button-rounded button-small" style="display: block;float: right;margin-right: 10px">返回</a>
+                </div>
                 <div class="white-box">
                     <form class="form-horizontal form-wrapper"  style="padding-right: 6%;padding-top: 1%" accept-charset="utf-8">
                         <p style="color: black;font-size: 15px;font-weight: bolder">风险条目列表：</p>
@@ -79,7 +83,7 @@
                             <c:choose>
                                 <c:when test="${dangerList.size()==0}">
                                     <tr>
-                                        <td style="font-weight: bolder;color: black">暂无产品！</td>
+                                        <td style="font-weight: bolder;color: black">暂无风险条目！</td>
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
@@ -94,7 +98,7 @@
                                             <td>${item.description}</td>
                                             <td>
                                                 <a href="/view/editDanger?did=${item.did}" class="button button-primary button-rounded button-small" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">编辑</a>
-                                                <a href="javascript:del(${item.did})" class="button button-primary button-rounded button-small button-caution" style="padding: 0 15px 0 15px">删除</a>
+                                                <a href="javascript:del(${item.did})" class="button button-primary button-rounded button-small button-caution" style="display: block;margin-bottom: 10px;padding: 0 15px 0 15px">删除</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -106,7 +110,8 @@
 
                         <div class="form-group form-line">
                             <div class="col-sm-10">
-                                <a href="/view/addDanger" class="button button-uppercase button-primary">增加风险条目</a>
+                                <a href="${pageContext.request.contextPath}/view/addDanger?rid=${rid}" class="button button-uppercase button-primary">增加风险条目</a>
+                                <input type="hidden"  value="${rid}" id="rid">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </div>
@@ -151,17 +156,18 @@
                     closeOnConfirm: false
                 },
                 function(){
-                    alert(id);
+                    var rid=document.getElementById("rid").value;
+//                    alert(id);
                     $.post(
                             "/danger/del",
                             {
                                 "did":id
                             },
                             function(data){
-                                alert(data);
+//                                alert(data);
                                 if(data=="success"){
                                     swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                                    location.href="/view/editRiskPlan";
+                                    location.href="/view/editRiskPlan?rid="+rid;
                                 }
                             }
                     );

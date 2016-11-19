@@ -29,6 +29,7 @@ $('#submitLogin').click(
             alert(str);
             return;
         }
+        // alert(email+identity+password);
 
         $.post(
             "/login",
@@ -38,6 +39,7 @@ $('#submitLogin').click(
                 "password":password
             },
             function(data){
+                // alert(data);
                 label=document.getElementById("infoLabel");
                 if(label!=null){
                     label.parentNode.removeChild(label);
@@ -51,7 +53,7 @@ $('#submitLogin').click(
                 }else if(data=="Unknown Error"){
                     alert("未知错误，请尝试重新登录！");
                 } else if(data=="true"){
-                    location.href="/login/route";
+                    location.href="/riskPlan";
                 }
         });
 });

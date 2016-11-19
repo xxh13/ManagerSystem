@@ -27,23 +27,25 @@ $('#addDanger').click(
         var limit=document.getElementById("limit").value;
         var poster=document.getElementById("poster").value;
         var tracer=document.getElementById("tracer").value;
+        var rid=document.getElementById("rid").value;
 
-        alert(content+"|"+possiblity+"|"+effect+"|"+limit+"|"+poster+"|"+tracer);
+        // alert(content+"|"+possiblity+"|"+effect+"|"+limit+"|"+poster+"|"+tracer+"|"+"rid:"+rid);
 
         $.post(
             "/danger/add",
             {
                 "content":content,
-                "possiblity":possiblity,
+                "possibility":possiblity,
                 "effect":effect,
-                "limit":limit,
+                "threshold":limit,
                 "poster":poster,
-                "tracer":tracer
+                "tracer":tracer,
+                "rid":rid
             },
             function(data){
                 if(data=="success"){
                     alert("新增风险条目成功！");
-                    location.href='/view/editRiskPlan';
+                    location.href='/view/editRiskPlan?rid='+rid;
                 }else{
                     alert("未知错误，请重试！");
                 }

@@ -49,11 +49,12 @@ public class DangerServlet extends HttpServlet {
             String condition=request.getParameter("condition");
             /////////////////////////////////////////////////////////////////////
             System.out.println("条件是"+content);
-            condition="你好！";
+            condition="";
             ////////////////////////////////////
             String description=request.getParameter("description");
-            //int rid=Integer.parseInt(request.getParameter("rid"));
-            int rid=1;
+            int rid=Integer.parseInt(request.getParameter("rid"));
+            System.out.println("rid是"+rid);
+//            int rid=Integer.parseInt((String)request.getSession().getAttribute("rid"));
 
             Danger danger=new Danger();
             danger.setCondition(condition);
@@ -64,6 +65,7 @@ public class DangerServlet extends HttpServlet {
             danger.setPoster(poster);
             danger.setThreshold(threshold);
             danger.setRid(rid);
+            System.out.println(danger.toString());
             String result=dangerService.save(danger);
 
             PrintWriter out = response.getWriter();

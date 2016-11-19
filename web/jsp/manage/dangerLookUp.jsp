@@ -197,7 +197,7 @@
             }
         });
         var importRiskPlanName=document.getElementById("importRiskPlanName").value;
-        alert(importRiskPlanName+"|"+str);
+//        alert(importRiskPlanName+"|"+str);
         $.post(
                 "/importDanger",
                 {
@@ -213,7 +213,7 @@
     function lookup(){
         var startdate=document.getElementById("startdate").value;
         var enddate=document.getElementById("enddate").value;
-        alert(startdate+"|"+enddate);
+//        alert(startdate+"|"+enddate);
         location.href="/danger/getDangerByTime?date1="+startdate+"&date2="+enddate;
     }
 

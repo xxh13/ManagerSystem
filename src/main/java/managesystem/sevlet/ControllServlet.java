@@ -25,11 +25,14 @@ public class ControllServlet extends HttpServlet {
 
         DangerService ds=new DangerServiceImpl();
         if(view.equals("addDanger")){
+            String rid=request.getParameter("rid");
+            request.getSession().setAttribute("rid", rid);
             response.sendRedirect("/jsp/manage/addDanger.jsp");
         }
         else if(view.equals("editRiskPlan")){
            RequestDispatcher dispatcher=request.getRequestDispatcher("/jsp/manage/editRiskPlan.jsp");
-            List<Danger> list=ds.getDangersByRid(1);
+            String rid=request.getParameter("rid");
+            List<Danger> list=ds.getDangersByRid(Integer.parseInt(rid));
             System.out.println("list的长度="+list.size());
             request.setAttribute("dangerList",list);
             dispatcher.forward(request,response);

@@ -54,7 +54,7 @@
         <div class="row main-frame">
 
             <div class="col-sm-1 frame-left">
-                <a href="${pageContext.request.contextPath}/editRiskPlan"><div class="setting-left">风险计划</div></a>
+                <a href="${pageContext.request.contextPath}/editRiskPlan?rid=${rid}"><div class="setting-left">风险计划</div></a>
             </div>
 
             <div class="col-sm-10 frame-middle">
@@ -112,7 +112,7 @@
                         <div class="form-group form-line">
                             <label for="poster" class="col-sm-2 control-label">提交者：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control from-input" id="poster" name="poster" value="${username}" readonly>
+                                <input type="text" class="form-control from-input" id="poster" name="poster" value="${name}" readonly>
                             </div>
                         </div>
 
@@ -127,6 +127,7 @@
                         <div class="form-group form-line">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <input type="button"  value="增加风险条目" class="btn btn-block post-btn" id="addDanger">
+                                <input type="hidden"  value="${rid}" id="rid">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </div>

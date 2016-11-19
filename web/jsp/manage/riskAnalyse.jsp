@@ -55,9 +55,9 @@
     <div class="container inner-frame">
         <div class="row main-frame">
 
-            <div class="col-sm-1 frame-left">
-                <a href="${pageContext.request.contextPath}/riskAnalyse"><div class="setting-left">风险库统计</div></a>
-            </div>
+            <%--<div class="col-sm-1 frame-left">--%>
+                <%--<a href="${pageContext.request.contextPath}/riskAnalyse"><div class="setting-left">风险库统计</div></a>--%>
+            <%--</div>--%>
 
             <div class="col-sm-11 frame-middle">
                 <div class="title-box">风险库统计</div>
@@ -120,12 +120,12 @@
 <script>
 
     function lookup(){
-        alert('hh');
+//        alert('hh');
         var startdate=document.getElementById("startdate").value;
         var enddate=document.getElementById("enddate").value;
 
 
-        alert(startdate+"|"+enddate);
+//        alert(startdate+"|"+enddate);
 
         $.post(
                 "/danger/analyseDangerByTime",
@@ -139,9 +139,9 @@
                     var data2=set.data2;
                     var data3=set.data3;
 
-                    alert("data1="+data1);
-                    alert("data2="+data2);
-                    alert("data3="+data3);
+//                    alert("data1="+data1);
+//                    alert("data2="+data2);
+//                    alert("data3="+data3);
                     //直方图
                     var histogramChart = echarts.init(document.getElementById('histogramChart'));
                     histogramChart.setOption({
@@ -278,7 +278,7 @@
                                 legend: {
                                     orient: 'vertical',
                                     left: 'left',
-                                    data: ['风险1','风险2','风险3','风险4','风险5']
+                                    data: data1
                                 },
                                 series : [
                                     {

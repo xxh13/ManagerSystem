@@ -39,12 +39,13 @@ public class DangerServiceImpl implements DangerService{
             pstmt.setString(4,danger.getThreshold());
             pstmt.setString(5,danger.getPoster());
             pstmt.setString(6,danger.getDescription());
-            pstmt.setInt(7,0);
+            pstmt.setInt(7,danger.getRid());
             pstmt.setDate(8,sqlDate);
             pstmt.setString(9,danger.getCondition());
             pstmt.executeUpdate();
             return "success";
         } catch (SQLException e) {
+            e.printStackTrace();
             return "fail";
         }
     }

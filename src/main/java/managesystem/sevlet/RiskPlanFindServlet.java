@@ -29,6 +29,8 @@ public class RiskPlanFindServlet extends HttpServlet {
             RiskPlanUtil riskPlanUtil = new RiskPlanUtil();
             List<Danger> dangerList = riskPlanUtil.findDangerListByRid(rid);
             request.getSession().setAttribute("dangerList", dangerList);
+            request.getSession().setAttribute("rid", rid);
+//            request.getSession().setAttribute("riskPlanName", rid);
             response.sendRedirect("jsp/manage/editRiskPlan.jsp");
         }catch (Exception e) {
             System.out.println(e);

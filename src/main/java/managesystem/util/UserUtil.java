@@ -27,7 +27,8 @@ public class UserUtil {
             return null;
         }
         else {
-            pstmt = conn.prepareStatement("select * from user where name = " + email);
+            pstmt = conn.prepareStatement("select * from user where name =  ?" );
+            pstmt.setString(1, email);
             rs = pstmt.executeQuery();
             rs.next();
             User user = new User(rs.getInt("uid"), rs.getString("name"), rs.getString("identity"), rs.getString("pswd"));

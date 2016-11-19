@@ -25,6 +25,7 @@ public class RiskPlanAddServlet extends HttpServlet {
         try {
             RiskPlan riskPlan = new RiskPlan(name, new Date());
             riskPlanUtil.addRisPlan(riskPlan);
+            response.getWriter().print("success");
         }catch (Exception e) {
             System.out.print(e);
         }

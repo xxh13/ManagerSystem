@@ -137,6 +137,7 @@
                             <div class="col-sm-offset-2 col-sm-10">
                                 <input type="hidden" id="did" value="${danger.did}" />
                                 <input type="button"  value="保存改动" class="btn btn-block post-btn" id="createwaiter" onclick="update()">
+                                <input type="hidden"  value="${rid}" id="rid">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </div>
@@ -185,19 +186,21 @@
 
         var desccription=document.getElementById("description").value;
 
+        var rid=document.getElementById("rid").value;
+
         $.post(
                 "/danger/update",
                 {   "did":did,
                     "condition":conditiondescription,
                     "description":desccription,
-                    "rid":"1"
+                    "rid":rid
                 },
                 function(data){
 
                     if(data=="success"){
 
                         alert("追踪风险条目成功！");
-                        location.href="/view/editRiskPlan";
+                        location.href="/view/editRiskPlan?rid="+rid;
                     }else{
                         alert("未知错误，请重试！");
                     }

@@ -44,6 +44,8 @@ $('#submitForm').click(
             return;
         }
 
+        alert(email+"|"+identity+"|"+pre_password);
+
         $.post(
             "/register",
             {
@@ -52,6 +54,8 @@ $('#submitForm').click(
                 "password":pre_password
             },
             function(data){
+                // alert("data");
+                // alert(data);
                 label=document.getElementById("infoLabel");
                 if(label!=null){
                     label.parentNode.removeChild(label);
@@ -80,7 +84,8 @@ $('#submitForm').click(
                     document.getElementById("validiv").appendChild(label2);
                 }
                 else{
-                    alert(data);
+                    // alert("no data");
+                    alert("未知错误，请重试！");
                 }
             });
 });

@@ -27,10 +27,14 @@ public class RegisterServlet extends HttpServlet {
         try {
             User user = userUtil.getUserByEmail(email);
             if (user == null) {
-                User userAdd = new User();
-                userUtil.addUser(userAdd);
-            }else {
 
+                User userAdd = new User(email, identity, password);
+                userUtil.addUser(userAdd);
+                System.out.printf(email);
+                System.out.printf(identity);
+                response.getWriter().print("success");
+            }else {
+                response.getWriter().print("fail");
             }
         }catch (Exception e) {
 
